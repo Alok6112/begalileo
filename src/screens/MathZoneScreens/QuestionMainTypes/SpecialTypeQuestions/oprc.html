@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.17/jquery-ui.min.js"></script>
+    <script src="jquery.ui.touch-punch.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.js"></script>
+
+    <title>Document</title>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        height: 30px;
+      }
+
+      .options {
+        width: 100%;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        min-height: 30px;
+      }
+      .optionElement {
+        min-height: 30px;
+        min-width: 50px;
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+        padding: 5px;
+      }
+      .tdStylesForDrop {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>hello orc</h1>
+    <button onclick="validate()">Check</button>
+  </body>
+  <script>
+    let data = {
+      status: true,
+      question_no: 1,
+      total: 10,
+      question_data: [
+        {
+          question_id: 46168,
+          operation: null,
+          question_text:
+            "\u003cp\u003eDrag and drop the correct steps that show the procedure and example to check if a given pair of numbers is co-prime.\u003c/p\u003e\r\n",
+          question_type: "oprc",
+          upload_file_name: "",
+          level: "level2",
+          fib_text: null,
+          fib_before_text: null,
+          after_question_text: "",
+          choice_data: [],
+          orc_oprc_data: [
+            {
+              rows: null,
+              columns: null,
+              row_headers: [
+                '\u003cstrong\u003e\u003cspan style="color:#800080;"\u003e\u003cspan style="background-color:#00FFFF;"\u003eProcedure\u003c/span\u003e\u003c/span\u003e\u003c/strong\u003e',
+                '\u003cstrong\u003e\u003cspan style="color:#800080;"\u003e\u003cspan style="background-color:#00FFFF;"\u003eExample\u003c/span\u003e\u003c/span\u003e\u003c/strong\u003e',
+              ],
+              column_headers: ["Step 1", "Step 2", "Step 3"],
+              response: [
+                ["\u003cspan class=\"mathImg\"\u003e\\frac{5}{3}y\u003c/span\u003e"],
+                ["Identify the common factors."],
+                [
+                  "If the common factor is 1, the numbers are co-prime; else they are not co-prime.",
+                ],
+                [
+                  "Factors of 12 --\u0026gt; 1, 2, 3, 4, 6, 12 ; Factors of 25 --\u0026gt; 1, 5, 25",
+                ],
+                ["Common factor --\u0026gt; 1"],
+                ["Hence 12 and 25 are co-prime."],
+              ],
+              extra_options: ["Hence 12 and 25 are not co-prime."],
+            },
+          ],
+          ol_data: [],
+        },
+      ],
+      lice_class_id: 4,
+      tag_id: 1567,
+      level: "level2",
+      live_class_practice_id: null,
+      message: "Quiz started successfully",
+    };
+
+    const orcData = data.question_data[0].orc_oprc_data[0];
+    let colHeaders = ["",...orcData.column_headers];
+    let rowHeaders = ["",...orcData.row_headers];
+
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+      ev.preventDefault();
+      var data = ev.dataTransfer.getData("text");
+      console.log(data);
+      if (options.includes(ev.target.id)) {
+        ev.target.parentNode.appendChild(document.getElementById(data));
+      } else {
+        ev.target.appendChild(document.getElementById(data));
+      }
+    }
+
+    let options = orcData.extra_options;
+
+    for (let i = 0; i < orcData.response.length; i++) {
+      for (let j = 0; j < orcData.response[i].length; j++) {
+        options.push(orcData.response[i][j]);
+      }
+    }
+
+    function shuffle(array) {
+      let currentIndex = array.length,
+        randomIndex;
+
+      // While there remain elements to shuffle.
+      while (currentIndex != 0) {
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex],
+          array[currentIndex],
+        ];
+      }
+
+      return array;
+    }
+
+    shuffle(options);
+
+    function generateTable() {
+      // creates a <table> element and a <tbody> element
+      const tbl = document.createElement("table");
+      const tblBody = document.createElement("tbody");
+
+      // creating all cells
+      for (let i = 0; i < rowHeaders.length; i++) {
+        // creates a table row
+        const row = document.createElement("tr");
+
+        for (let j = 0; j < colHeaders.length; j++) {
+          const cell = document.createElement("td");
+          cell.id = `td_${i}_${j}`;
+
+          let cellText;
+
+          if(i > 0 && j == 0){
+            cellText = document.createElement("div");
+            cellText.id = `div_${i}_${j}`;
+            cellText.innerHTML = rowHeaders[i];
+            cell.appendChild(cellText);
+          }
+
+          if (i == 0) {
+            cellText = document.createElement("div");
+            cellText.id = `div_${i}_${j}`;
+            cellText.innerHTML = colHeaders[j];
+            cell.appendChild(cellText);
+          } else {
+            cell.style = cell.className + "tdStylesForDrop";
+            cell.ondrop = function (event) {
+              drop(event);
+            };
+            cell.ondragover = function (event) {
+              allowDrop(event);
+            };
+            cell.ondragstart = function (event) {
+              drag(event);
+            };
+          }
+
+          row.appendChild(cell);
+        }
+
+        // add the row to the end of the table body
+        tblBody.appendChild(row);
+      }
+
+      // put the <tbody> in the <table>
+      tbl.appendChild(tblBody);
+      // appends <table> into <body>
+      document.body.appendChild(tbl);
+      // sets the border attribute of tbl to '2'
+      tbl.setAttribute("border", "2");
+      generateOptions();
+    }
+
+    function generateOptions() {
+      let optionsContainer = document.createElement("div");
+      optionsContainer.className = "options";
+      optionsContainer.id = "optionsdrop";
+      optionsContainer.ondrop = function (event) {
+        drop(event);
+      };
+      optionsContainer.ondragover = function (event) {
+        allowDrop(event);
+      };
+      optionsContainer.ondragstart = function (event) {
+        drag(event);
+      };
+
+      document.body.appendChild(optionsContainer);
+
+      for (let i = 0; i < options.length; i++) {
+        let optionElement = document.createElement("div");
+        optionElement.className = "optionElement";
+        optionElement.id = options[i];
+        optionElement.innerHTML = options[i];
+        optionElement.setAttribute("draggable", "true");
+        optionsContainer.appendChild(optionElement);
+      }
+    }
+
+    generateTable();
+
+    let studentOptions = [];
+    function validate() {
+      console.log("validate");
+      let elements = document.querySelector("tbody");
+      let tablerows = elements.childNodes;
+
+      for (let i = 1; i < tablerows.length; i++) {
+        let tableRowColumns = tablerows[i].childNodes;
+
+        for (let j = 1; j < tableRowColumns.length; j++) {
+          let colElements = tableRowColumns[j].childNodes;
+          let temp = [];
+          for (let k = 0; k < colElements.length; k++) {
+            temp.push(colElements[k].id);
+          }
+          studentOptions.push(temp);
+        }
+      }
+      console.log(studentOptions);
+
+      let originalResponses = orcData.response;
+      let flagForValidation = false;
+      let isItBreaked = false;
+      let notFilledAllFields = false;
+
+      console.log(originalResponses);
+      console.log(studentOptions);
+
+      for (let i = 0; i < originalResponses.length; i++) {
+        console.log(studentOptions[i].length, originalResponses[i].length);
+        if (studentOptions[i].length < originalResponses[i].length) {
+          notFilledAllFields = true;
+          break;
+        }
+      }
+
+      if (notFilledAllFields) {
+        console.log("please fill all the responses");
+      } else {
+        for (let i = 0; i < originalResponses.length; i++) {
+          for (let j = 0; j < originalResponses[i].length; j++) {
+            
+            if (studentOptions[i][j] != originalResponses[i][j]) {
+              isItBreaked = true;
+              break;
+            }
+          }
+          if (isItBreaked) {
+            break;
+          }
+        }
+
+        if (isItBreaked) {
+          console.log("You are wrong!");
+          flagForValidation = false;
+        } else {
+          console.log("You are Correct!");
+          flagForValidation = true;
+        }
+      }
+    }
+
+
+    var MQ = MathQuill.getInterface(2);
+      var Mfd;
+      
+      let arr = document.getElementsByClassName('mathImg')
+      let arr1 = [...arr]
+      for (let i = 0; i < arr1.length; i++) {
+        
+          arr[i].innerHTML = insertStaticMathMl(arr[i].innerHTML).outerHTML
+      
+      }
+      
+      
+      function insertStaticMathMl(data) {
+         var problemSpan = document.createElement('span')
+         problemSpan.innerHTML = data
+         problemSpan.id = Math.floor(Math.random() * 1000) + 1
+         MQ.StaticMath(problemSpan)
+         return problemSpan;
+      }
+  </script>
+</html>

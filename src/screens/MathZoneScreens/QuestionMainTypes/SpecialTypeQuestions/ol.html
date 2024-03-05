@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.17/jquery-ui.min.js"></script>
+    <script src="jquery.ui.touch-punch.min.js"></script>
+
+    <title>Document</title>
+    <style>  
+      body {
+        margin: 0;
+      }
+
+      .container {
+        /* background-color: #333; */
+        border: 1px solid black;
+        padding: 1rem;
+        margin-top: 1rem;
+      }
+
+      .draggable {
+        padding: 1rem;
+        background-color: white;
+        border: 1px solid black;
+        cursor: move;
+        margin: 5px;
+      }
+
+      .draggable.dragging {
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>hello ol</h1>
+    <button onclick="validate()">Check</button>
+  </body>
+  <script>
+    let data = {
+      status: true,
+      question_no: 1,
+      total: 10,
+      question_data: [
+        {
+          question_id: 46166,
+          operation: null,
+          question_text:
+            "\u003cp\u003eThe steps to check if a given pair of numbers is co-prime is listed below.\u003c/p\u003e\r\n\r\n\u003cp\u003eArrange in the correct order.\u003c/p\u003e\r\n",
+          question_type: "ol",
+          upload_file_name: "",
+          level: "level2",
+          fib_text: null,
+          fib_before_text: null,
+          after_question_text:
+            "\u003cp\u003eFor example, 4, 9 are co-prime.\u003c/p\u003e\r\n",
+          choice_data: [],
+          orc_oprc_data: [],
+          ol_data: [
+            {
+              response: [
+                "<p>Find the factors of the given numbers.</p>",
+                "<p>Find the common factors of the given numbers.</p>",
+                "<p>If the common factor is only 1, then the numbers are co-prime.</p>",
+              ],
+            },
+          ],
+        },
+      ],
+      lice_class_id: 4,
+      tag_id: 1567,
+      level: "level2",
+      live_class_practice_id: null,
+      message: "Quiz started successfully",
+    };
+    
+    const olData = data.question_data[0].ol_data[0];
+
+    let options = []
+
+    for (let i = 0; i < olData.response.length; i++) {
+        options.push(olData.response[i]);
+    }
+
+    function shuffle(array) {
+      let currentIndex = array.length,
+        randomIndex;
+
+      // While there remain elements to shuffle.
+      while (currentIndex != 0) {
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex],
+          array[currentIndex],
+        ];
+      }
+
+      return array;
+    }
+
+    shuffle(options);
+
+    
+    function generateOptions() {
+      let optionsContainer = document.createElement("div");
+      optionsContainer.className = "container";
+
+      document.body.appendChild(optionsContainer);
+
+      for (let i = 0; i < options.length; i++) {
+        let optionElement = document.createElement("div");
+        optionElement.className = "draggable";
+        optionElement.id = options[i];
+        optionElement.innerHTML = options[i];
+        optionElement.setAttribute("draggable", "true");
+        optionsContainer.appendChild(optionElement);
+      }
+    }
+
+    generateOptions()
+
+
+    const draggables = document.querySelectorAll(".draggable");
+    const containers = document.querySelectorAll(".container");
+
+    draggables.forEach((draggable) => {
+      draggable.addEventListener("dragstart", () => {
+        draggable.classList.add("dragging");
+      });
+
+      draggable.addEventListener("dragend", () => {
+        draggable.classList.remove("dragging");
+      });
+    });
+
+    containers.forEach((container) => {
+      container.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        const afterElement = getDragAfterElement(container, e.clientY);
+        const draggable = document.querySelector(".dragging");
+        if (afterElement == null) {
+          container.appendChild(draggable);
+        } else {
+          container.insertBefore(draggable, afterElement);
+        }
+      });
+    });
+
+    function getDragAfterElement(container, y) {
+      const draggableElements = [
+        ...container.querySelectorAll(".draggable:not(.dragging)"),
+      ];
+
+      return draggableElements.reduce(
+        (closest, child) => {
+          const box = child.getBoundingClientRect();
+          const offset = y - box.top - box.height / 2;
+          if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child };
+          } else {
+            return closest;
+          }
+        },
+        { offset: Number.NEGATIVE_INFINITY }
+      ).element;
+    }
+  
+    function validate(){
+        let arr =  document.querySelectorAll(".draggable")
+        let flagForValidation = true;
+        for(let i=0;i<arr.length;i++){
+            console.log(arr[i].id == olData.response[i] );
+            if(arr[i].id != olData.response[i]){
+                flagForValidation = false
+                break;
+            }
+        }
+
+        if(flagForValidation){
+            console.log("Yahooo!");
+        }else{
+            console.log("Shitt!");
+        }
+        
+    }
+  </script>
+</html>

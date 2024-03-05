@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .circle {
+        border: 1px solid black;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .inputCircle{
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+       border: 0;
+       padding: 0%;
+       margin: 0%;
+      }
+      #main-frame {
+        border: 1px solid black;
+        z-index: 999;
+      }
+      .row {
+        display: flex;
+        justify-content: space-around;
+        position: relative;
+        margin-bottom: 30px;
+      }
+      .point {
+        height: 1px;
+        width: 1px;
+        /* border: 1px solid black;
+        border-radius: 50%; */
+        position: absolute;
+      }
+      .top {
+        top: 0%;
+      }
+      .bottom {
+        bottom: 0%;
+      }
+      #mycanvas {
+        position: absolute;
+        top: 0;
+      }
+      #container {
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <p>How many <img data-cke-saved-src="https://s3.ap-south-1.amazonaws.com/begalileo-assets/CakesAndCandies/12.png" src="https://s3.ap-south-1.amazonaws.com/begalileo-assets/CakesAndCandies/12.png">&nbsp;are there in all?&nbsp;</p>
+
+    <div id="container">
+      <div id="main-frame"></div>
+    </div>
+    <button onclick=" validate()">Check</button>
+  </body>
+  <script>
+    let treeArr = [];
+    let twodArr = [];
+    let flag = false
+    let layers = 0;
+    let data =[{"row":0,"col":0,"value":"15","isMissed":"true"},{"row":0,"col":1,"value":"+","isMissed":"false"},{"row":0,"col":2,"value":"5","isMissed":"true"},{"row":0,"col":3,"value":"=","isMissed":"false"},{"row":0,"col":4,"value":"20","isMissed":"true"},{"row":1,"col":0},{"row":1,"col":1},{"row":1,"col":2},{"row":2,"col":0},{"row":2,"col":1},{"row":2,"col":2},{"row":3,"col":0},{"row":3,"col":1},{"row":3,"col":2},{"row":4,"col":0},{"row":4,"col":1},{"row":4,"col":2},{"row":5,"col":0},{"row":5,"col":1},{"row":5,"col":2},{"row":6,"col":0},{"row":6,"col":1},{"row":6,"col":2}]
+    function wholeDataFormat() {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].col % 2 == 0) {
+            treeArr.push(data[i]);
+        }
+        if(flag == false && data[i].value == undefined){
+            layers = i
+            flag = true
+          }
+      }
+
+
+      if(layers <= 5){
+            layers = 2
+        }else if(layers <= 11){
+            layers = 3
+        }else{
+            layers = 4
+        }
+
+      let temp = treeArr[0];
+      treeArr[0] = treeArr[2];
+      treeArr[2] = temp;
+
+      temp = treeArr[1];
+      treeArr[1] = treeArr[2];
+      treeArr[2] = temp;
+      console.log(treeArr);
+
+      let sIndex = 0;
+      let eIndex = 1;
+      for (let i = 1; i < layers+1; i++) {
+        sIndex = Math.pow(2, i - 1) - 1;
+        eIndex = Math.pow(2, i) - 1;
+        twodArr.push(treeArr.slice(sIndex, eIndex));
+        //console.log(treeArr.slice(sIndex,eIndex));
+      }
+      console.log(twodArr);
+      treeStructure();
+    }
+
+    function treeStructure() {
+      let main_frame = document.getElementById("main-frame");
+
+      for (let i = 0; i < twodArr.length; i++) {
+        let rowDiv = document.createElement("div");
+        rowDiv.className = "row";
+        rowDiv.id = "row_" + i;
+        for (let j = 0; j < twodArr[i].length; j++) {
+          let ele = document.createElement("div");
+         
+            ele.className = "circle";
+           ele.title = twodArr[i][j].value;
+            ele.innerText = twodArr[i][j].value;
+           
+            if(twodArr[i][j].isMissed == "true"){
+                ele.innerText = null
+                let input_ele = document.createElement('input')
+                input_ele.type="text"
+                input_ele.style.textAlign = "center"
+                input_ele.title = twodArr[i][j].value
+                input_ele.className = 'inputCircle'
+                ele.appendChild(input_ele);
+
+            }
+         
+            if(twodArr[i][j].value == undefined){
+                ele.style.visibility = "hidden"  
+            }
+
+          if (i != 0) {
+            let up_point = document.createElement("div");
+            up_point.classList.add("point", "top");
+            up_point.id = "layer_" + i + "_node_" + j + "_up";
+            ele.appendChild(up_point);
+          }
+
+          if (i != twodArr.length - 1) {
+            let down_point = document.createElement("div");
+            down_point.classList.add("point", "bottom");
+            down_point.id = "layer_" + i + "_node_" + j + "_down";
+            ele.appendChild(down_point);
+          }
+
+          rowDiv.appendChild(ele);
+        }
+
+        main_frame.appendChild(rowDiv);
+      }
+
+      console.log(main_frame.offsetHeight, main_frame.offsetWidth);
+
+      var rect = main_frame.getBoundingClientRect();
+      // console.log(rect.top, rect.right, rect.bottom, rect.left);
+
+      makeBond();
+    }
+
+    function makeBond() {
+      let main_frame = document.getElementById("main-frame");
+      let canvas = document.createElement("canvas");
+      canvas.id = "mycanvas";
+      canvas.style.zIndex = -1
+      canvas.height = main_frame.offsetHeight;
+      canvas.width = main_frame.offsetWidth;
+
+      document.getElementById("container").append(canvas);
+
+      for (let i = 0; i < twodArr.length - 1; i++) {
+        let parent_layer = document.getElementById("row_" + i);
+        let child_layer = document.getElementById("row_" + (i + 1));
+        ;
+
+        for (let j = 0; j < parent_layer.childNodes.length; j++) {
+          let parent_id = "layer_" + i + "_node_" + j + "_down";
+          let child_id1 = "layer_" + (i + 1) + "_node_" + j * 2 + "_up";
+          let child_id2 = "layer_" + (i + 1) + "_node_" + (j * 2 + 1) + "_up";
+        
+          let child1_ele =
+            document.getElementById(child_id1).parentNode.title;
+          let child2_ele =
+            document.getElementById(child_id2).parentNode.title;
+        
+            if( (child1_ele != "undefined" && child2_ele != "undefined")){
+            drawCanvas(parent_id, child_id1, child_id2);
+            }
+        // if( (child1_ele != undefined && child2_ele == undefined) || (child1_ele== "" && child2_ele == "")){
+        //     drawCanvas(parent_id, child_id1, child_id2);
+        // }else{
+        //     drawCanvas(parent_id, child_id1, child_id2);
+        // }
+
+          
+        }
+      }
+
+      
+    }
+
+    function drawCanvas(parent_id, child_id1, child_id2) {
+      let point1 = document.getElementById(parent_id);
+      let point2 = document.getElementById(child_id1);
+      let point3 = document.getElementById(child_id2);
+
+      point1 = point1?.getBoundingClientRect();
+      point2 = point2?.getBoundingClientRect();
+      point3 = point3?.getBoundingClientRect();
+
+      let left1 = point1?.left;
+      let top1 = point1?.top;
+      let left2 = point2?.left;
+      let top2 = point2?.top;
+      let left3 = point3?.left;
+      let top3 = point3?.top;
+
+      let parent = document.getElementById("row_0");
+      parent = parent?.getBoundingClientRect();
+      let parentX = parent?.left;
+      let parentY = parent?.top;
+
+      var c = document.getElementById("mycanvas");
+      var ctx = c.getContext("2d");
+
+      ctx.beginPath();
+      ctx.moveTo(left1 - parentX, top1 - parentY);
+      ctx.lineTo(left2 - parentX, top2 - parentY);
+      ctx.stroke();
+
+      
+        ctx.beginPath();
+        ctx.moveTo(left1 - parentX, top1 - parentY);
+        ctx.lineTo(left3 - parentX, top3 - parentY);
+        ctx.stroke();
+    }
+    
+    function remove() {}
+
+    window.addEventListener("resize", () => {
+      let ele = document.getElementById("mycanvas");
+      ele.remove();
+      makeBond();
+    });
+
+    wholeDataFormat();
+
+
+
+    function validate(){
+        let arr =  document.querySelectorAll("input")
+        console.log(arr);
+        let flagForValidation = true;
+        for(let i=0;i<arr.length;i++){
+            console.log(arr[i].value.trim(),arr[i].title);
+            if(arr[i].value.trim() != arr[i].title){
+                flagForValidation = false
+                break;
+            }
+        }
+
+        if(flagForValidation){
+            alert("Yahooo!");
+        }else{
+            alert("Shitt!");
+        }
+        return flagForValidation;
+    }
+
+  </script>
+</html>
+
+

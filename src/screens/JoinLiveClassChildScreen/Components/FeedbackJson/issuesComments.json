@@ -1,0 +1,43 @@
+[
+
+    {
+        "id": "1",
+        "name": "Class started late",
+        "checked": false
+      },
+      {
+        "id": "2",
+        "name": "Couldn't hear my teacher",
+        "checked": false
+      },
+      {
+        "id": "3",
+        "name": "Couldn't see the teacher",
+        "checked": false
+      },
+      {
+        "id": "4",
+        "name": "Video did not work",
+        "checked": false
+      },
+      {
+        "id": "5",
+        "name": "Class was not interesting",
+        "checked": false
+      },
+      {
+        "id": "6",
+        "name": "Whiteboard was not working",
+        "checked": false
+      },
+      {
+        "id": "7",
+        "name": "Teacher left the class early",
+        "checked": false
+      },
+      {
+        "id": "8",
+        "name": "Teacher was not friendly",
+        "checked": false
+      }
+]

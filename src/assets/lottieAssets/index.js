@@ -1,0 +1,37 @@
+export const lottie_puzzle = require("./lottie_puzzle.json");
+export const lottie_jupiter = require("./jupiter_clouds.json");
+export const lottie_laptop_class = require("./lottie_laptop_class.json");
+export const lottie_writing = require("./lottie_writing.json");
+export const lottie_success = require("./lottie_success.json");
+export const lottie_rocket = require("./lottie_rocket.json");
+export const lottie_number = require("./lottie_number.json");
+export const lottie_countdown = require("./lottie_countdown.json");
+export const lottie_emotion = require("./lottie_emotion.json");
+export const lottie_game_lost = require("./lottie_game_lost.json");
+export const lottie_game_won = require("./lottie_game_won.json");
+export const lottie_game_tie = require("./lottie_game_tie.json");
+export const lottie_speed_math_icon = require("./lottie_speed_math_icon.json");
+export const happy_star_emotion = require("./happy_star_emotion.json");
+export const lottie_liquid_transition = require("./lottie_liquid_transition.json");
+export const lottie_child_view = require("./lottie_child_view.json");
+export const lottie_mango_family = require("./lottie_mango_family.json");
+export const lottie_color_wheel = require("./lottie_color_wheel.json");
+export const lottie_math_zone = require("./lottie_math_zone.json");
+export const Childhappy = require("./Childhappy.json");
+// export const lottie_star = require("./starAnimation.json");
+// export const smileyStudent = require("./smiley.json");
+// export const clapStudent = require("./clapping.json");
+// export const thumsUp = require("./thumbsUp.json");
+
+export const lottie_star = require("./starnew.json");
+export const smileyStudent = require("./smileynew.json");
+export const clapStudent = require("./clappingnew.json");
+export const thumsUp = require("./thumsupnew.json");
+
+export const victoryEmotion = require("./VictoryAnimation.json");
+export const lossingEmotion = require("./Sademotion.json");
+export const correctStudentAnswer = require("./correctAnswerLottie.json");
+export const level1Star = require("./Level1star.json");
+export const level2Star = require("./Level2star.json");
+export const level3Star = require("./Level3star.json");
+export const level4Star = require("./Level4star.json");

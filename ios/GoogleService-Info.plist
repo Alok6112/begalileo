@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>47377262630-1ghtj133dv7fh7lm3okk5mvb7vfbp4lm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.47377262630-1ghtj133dv7fh7lm3okk5mvb7vfbp4lm</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>47377262630-8rhvmuo5k46tdb7fna2j964sf61pudne.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBhshSbixF01AKepNK9_Qr8ODdSiqlgIR4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>47377262630</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.carveniche.beGalileo</string>
+	<key>PROJECT_ID</key>
+	<string>begalileo-236510</string>
+	<key>STORAGE_BUCKET</key>
+	<string>begalileo-236510.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:47377262630:ios:4e2ce595c2c4871eeadee7</string>
+	<key>DATABASE_URL</key>
+	<string>https://begalileo-236510.firebaseio.com</string>
+</dict>
+</plist>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.17/jquery-ui.min.js"></script>
+    <script src="jquery.ui.touch-punch.min.js"></script>
+
+    <title>Document</title>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        height: 30px;
+      }
+
+      .options {
+        width: 100%;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        min-height: 30px;
+      }
+      .optionElement {
+        min-height: 30px;
+        min-width: 50px;
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+      }
+      .tdStylesForDrop{
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="before" style="font-size: 20px; color: blue; font-weight: bold; margin-top:10px"><p>Group the like terms:</p>
+    </div>
+            <br>
+            <div id="main-frame"><table id="tbl" border="2" style="font-family: arial, sans-serif; border-collapse: collapse; width: 100%;"><tbody id="tblBody"><tr><td id="td_0_0"><div id="div_0_0">Like terms of&nbsp;<span class="mathImg"><span id="173" class="mq-math-mode"><span class="mq-selectable">$2x^2y$</span><span class="mq-root-block mq-hasCursor" mathquill-block-id="1"><span mathquill-command-id="2">2</span><var mathquill-command-id="4">x</var><span class="mq-supsub mq-non-leaf mq-sup-only" mathquill-command-id="6"><span class="mq-sup" mathquill-block-id="8"><span mathquill-command-id="7">2</span></span></span><var mathquill-command-id="10">y</var><span class="mq-cursor">​</span></span></span></span></div></td><td id="td_0_1"><div id="div_0_1">Like terms of 3ab<sup>2</sup>c</div></td></tr><tr><td id="td_1_0"><div class="draggableElement" id="<span class=&quot;mathImg&quot;>\frac{2acb^2}{3}</span>_2" draggable="false" style="min-height: 30px; min-width: 50px; display: flex; justify-content: center; align-items: center; margin: 10px; padding: 2px; border: 1px solid black;"><span class="mathImg"><span id="880" class="mq-math-mode"><span class="mq-selectable">$\frac{2acb^2}{3}$</span><span class="mq-root-block mq-hasCursor" mathquill-block-id="34"><span class="mq-fraction mq-non-leaf" mathquill-command-id="35"><span class="mq-numerator" mathquill-block-id="37"><span mathquill-command-id="36">2</span><var mathquill-command-id="38">a</var><var mathquill-command-id="40">c</var><var mathquill-command-id="42">b</var><span class="mq-supsub mq-non-leaf mq-sup-only" mathquill-command-id="44"><span class="mq-sup" mathquill-block-id="46"><span mathquill-command-id="45">2</span></span></span></span><span class="mq-denominator" mathquill-block-id="49"><span mathquill-command-id="48">3</span></span><span style="display:inline-block;width:0">​</span></span><span class="mq-cursor">​</span></span></span></span></div><div class="draggableElement" id="<span class=&quot;mathImg&quot;>2yx^2</span>_0" draggable="false" style="min-height: 30px; min-width: 50px; display: flex; justify-content: center; align-items: center; margin: 10px; padding: 2px; border: 1px solid black;"><span class="mathImg"><span id="188" class="mq-math-mode"><span class="mq-selectable">$2yx^2$</span><span class="mq-root-block mq-hasCursor" mathquill-block-id="12"><span mathquill-command-id="13">2</span><var mathquill-command-id="15">y</var><var mathquill-command-id="17">x</var><span class="mq-supsub mq-non-leaf mq-sup-only" mathquill-command-id="19"><span class="mq-sup" mathquill-block-id="21"><span mathquill-command-id="20">2</span></span></span><span class="mq-cursor">​</span></span></span></span></div><div class="draggableElement" id="<span class=&quot;mathImg&quot;>4yx^2</span>_1" draggable="false" style="min-height: 30px; min-width: 50px; display: flex; justify-content: center; align-items: center; margin: 10px; padding: 2px; border: 1px solid black;"><span class="mathImg"><span id="494" class="mq-math-mode"><span class="mq-selectable">$4yx^2$</span><span class="mq-root-block mq-hasCursor" mathquill-block-id="23"><span mathquill-command-id="24">4</span><var mathquill-command-id="26">y</var><var mathquill-command-id="28">x</var><span class="mq-supsub mq-non-leaf mq-sup-only" mathquill-command-id="30"><span class="mq-sup" mathquill-block-id="32"><span mathquill-command-id="31">2</span></span></span><span class="mq-cursor">​</span></span></span></span></div></td><td id="td_1_1"><div class="draggableElement" id="-5b<sup>2</sup>ca_4" draggable="false" style="min-height: 30px; min-width: 50px; display: flex; justify-content: center; align-items: center; margin: 10px; padding: 2px; border: 1px solid black;">-5b<sup>2</sup>ca</div><div class="draggableElement" id="-<span class=&quot;mathImg&quot;>x^2y</span>_3" draggable="false" style="min-height: 30px; min-width: 50px; display: flex; justify-content: center; align-items: center; margin: 10px; padding: 2px; border: 1px solid black;">-<span class="mathImg"><span id="991" class="mq-math-mode"><span class="mq-selectable">$x^2y$</span><span class="mq-root-block mq-hasCursor" mathquill-block-id="51"><var mathquill-command-id="52">x</var><span class="mq-supsub mq-non-leaf mq-sup-only" mathquill-command-id="54"><span class="mq-sup" mathquill-block-id="56"><span mathquill-command-id="55">2</span></span></span><var mathquill-command-id="58">y</var><span class="mq-cursor">​</span></span></span></span></div></td></tr></tbody></table><div id="optionsdrop" style="min-height: 100px; border: 1px solid black; display: flex; flex-flow: row wrap; justify-content: center; align-items: center; box-sizing: border-box;"></div></div>
+            <div id="after" style="font-size: 20px; color: blue; font-weight: bold; margin-top:10px"></div>
+    
+    <h1>hello orc</h1>
+    <button onclick="validate()">Check</button>
+  </body>
+  <!-- <script>
+    let data = {
+      status: true,
+      question_no: 1,
+      total: 10,
+      question_data: [
+        {
+          question_id: 74776,
+          operation: null,
+          question_text:
+            '\u003cp\u003e\u003cstrong\u003e\u003cspan style="color:#E6E6FA;"\u003e\u003cspan style="background-color:#22607A;"\u003eSelect\u003c/span\u003e\u003c/span\u003e\u0026nbsp;the correct options and then\u0026nbsp;\u003cspan style="background-color:#AFEEEE;"\u003edrag and drop\u003c/span\u003e\u0026nbsp;the matching number.\u003c/strong\u003e\u0026nbsp;\u003c/p\u003e\r\n',
+          question_type: "orc",
+          upload_file_name: "",
+          level: "level1",
+          fib_text: null,
+          fib_before_text: null,
+          after_question_text: "",
+          choice_data: [],
+          orc_oprc_data: [
+            {
+              rows: null,
+              columns: null,
+              row_headers: "",
+              column_headers: [
+                '\u003cimg alt="" src="https://www.begalileo.com/system/ckeditor_assets/attachments/2438/i_mat0203_q102.png" style="width: 107px; height: 150px;"\u003e\u0026nbsp;⇒ \u003cselect name="g" required="required"\u003e\u003coption value=""\u003eSelect\u003c/option\u003e\u003coption value="2"\u003e2\u003c/option\u003e\u003coption value="4"\u003e4\u003c/option\u003e\u003coption value="8"\u003e8\u003c/option\u003e\u003coption selected="selected" value="3"\u003e3\u003c/option\u003e\u003coption value="5"\u003e5\u003c/option\u003e\u003coption value="6"\u003e6\u003c/option\u003e\u003coption value="7"\u003e7\u003c/option\u003e\u003c/select\u003e\u0026nbsp;\u003cstrong\u003e\u003cspan style="background-color:#FF8C00;"\u003etens\u003c/span\u003e\u003c/strong\u003e \u003cselect name="ga" required="required"\u003e\u003coption value=""\u003eSelect\u003c/option\u003e\u003coption value="2"\u003e2\u003c/option\u003e\u003coption value="4"\u003e4\u003c/option\u003e\u003coption value="8"\u003e8\u003c/option\u003e\u003coption value="3"\u003e3\u003c/option\u003e\u003coption value="5"\u003e5\u003c/option\u003e\u003coption value="6"\u003e6\u003c/option\u003e\u003coption selected="selected" value="7"\u003e7\u003c/option\u003e\u003c/select\u003e\u0026nbsp;\u003cstrong\u003e\u003cspan style="background-color:#FF8C00;"\u003eones\u003c/span\u003e\u003c/strong\u003e',
+                '\u003cimg alt="" src="https://www.begalileo.com/system/ckeditor_assets/attachments/2445/i_mat0203_q103_optb.png" style="width: 116px; height: 150px;"\u003e\u0026nbsp;⇒ \u003cselect name="g12" required="required"\u003e\u003coption value=""\u003eSelect\u003c/option\u003e\u003coption value="2"\u003e2\u003c/option\u003e\u003coption value="4"\u003e4\u003c/option\u003e\u003coption value="8"\u003e8\u003c/option\u003e\u003coption value="3"\u003e3\u003c/option\u003e\u003coption selected="selected" value="5"\u003e5\u003c/option\u003e\u003coption value="6"\u003e6\u003c/option\u003e\u003coption value="7"\u003e7\u003c/option\u003e\u003c/select\u003e\u0026nbsp;\u003cstrong\u003e\u003cspan style="background-color:#FF8C00;"\u003etens\u003c/span\u003e\u003c/strong\u003e \u003cselect name="ga8" required="required"\u003e\u003coption value=""\u003eSelect\u003c/option\u003e\u003coption value="2"\u003e2\u003c/option\u003e\u003coption value="4"\u003e4\u003c/option\u003e\u003coption selected="selected" value="8"\u003e8\u003c/option\u003e\u003coption value="3"\u003e3\u003c/option\u003e\u003coption value="5"\u003e5\u003c/option\u003e\u003coption value="6"\u003e6\u003c/option\u003e\u003coption value="7"\u003e7\u003c/option\u003e\u003c/select\u003e\u0026nbsp;\u003cstrong\u003e\u003cspan style="background-color:#FF8C00;"\u003eones\u003c/span\u003e\u003c/strong\u003e',
+              ],
+              response: [["37"], ["58"]],
+              extra_options: ["73", "85", "35", "59"],
+            },
+          ],
+          ol_data: [],
+        },
+      ],
+      lice_class_id: 4,
+      tag_id: 123,
+      level: "level1",
+      live_class_practice_id: null,
+      message: "Quiz started successfully",
+    };
+    // var doc = new DOMParser().parseFromString(checkData, "text/html");
+    // document.getElementById("main").innerHTML = doc.body.innerHTML;
+    
+
+    const orcData = data.question_data[0].orc_oprc_data[0];
+    let colHeaders = orcData.column_headers;
+
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+      ev.preventDefault();
+      var data = ev.dataTransfer.getData("text");
+      console.log(data);
+      if(options.includes(ev.target.id)){
+        ev.target.parentNode.appendChild(document.getElementById(data));
+      }else{
+        ev.target.appendChild(document.getElementById(data));
+      } 
+      
+    }
+
+
+    let options = orcData.extra_options;
+
+    for (let i = 0; i < orcData.response.length; i++) {
+        for(let j=0;j<orcData.response[i].length;j++){
+            options.push(orcData.response[i][j]);
+        } 
+    }
+
+    function shuffle(array) {
+      let currentIndex = array.length,
+        randomIndex;
+
+      // While there remain elements to shuffle.
+      while (currentIndex != 0) {
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex],
+          array[currentIndex],
+        ];
+      }
+
+      return array;
+    }
+
+    shuffle(options);
+
+    function generateTable() {
+      // creates a <table> element and a <tbody> element
+      const tbl = document.createElement("table");
+      const tblBody = document.createElement("tbody");
+
+      // creating all cells
+      for (let i = 0; i < 2; i++) {
+        // creates a table row
+        const row = document.createElement("tr");
+
+        for (let j = 0; j < colHeaders.length; j++) {
+
+          const cell = document.createElement("td");
+          cell.id = `td_${i}_${j}`
+         
+          
+          let cellText;
+          if (i == 0) {
+            cellText = document.createElement("div");
+            cellText.id = `div_${i}_${j}`;
+            cellText.innerHTML = colHeaders[j];
+            cell.appendChild(cellText);
+          } else{
+            cell.style = cell.className + "tdStylesForDrop"
+            cell.ondrop = function (event) {
+              drop(event);
+            };
+            cell.ondragover = function (event) {
+              allowDrop(event);
+            };
+            cell.ondragstart = function (event) {
+              drag(event);
+            };
+          }
+
+          row.appendChild(cell);
+        }
+
+        // add the row to the end of the table body
+        tblBody.appendChild(row);
+      }
+
+      // put the <tbody> in the <table>
+      tbl.appendChild(tblBody);
+      // appends <table> into <body>
+      document.body.appendChild(tbl);
+      // sets the border attribute of tbl to '2'
+      tbl.setAttribute("border", "2");
+        //generateOptions();
+        setResponses()
+    }
+
+    function generateOptions() {
+      let optionsContainer = document.createElement("div");
+      optionsContainer.className = "options";
+      optionsContainer.id = "optionsdrop";
+      optionsContainer.ondrop = function (event) {
+        drop(event);
+      };
+      optionsContainer.ondragover = function (event) {
+        allowDrop(event);
+      };
+      optionsContainer.ondragstart = function (event) {
+        drag(event);
+      };
+
+      document.body.appendChild(optionsContainer);
+
+      for (let i = 0; i < options.length; i++) {
+        let optionElement = document.createElement("div");
+        optionElement.className = "optionElement";
+        optionElement.id = options[i];
+        optionElement.innerHTML = options[i];
+        optionElement.setAttribute("draggable", "true");
+        optionsContainer.appendChild(optionElement);
+      }
+
+    }
+  
+  
+    function setResponses() {
+
+let temp = []
+for (let i = 0; i < orcData.response.length; i++) {
+  let optionsContainer = document.createElement("div");
+  optionsContainer.className = "options";
+
+  for (let j = 0; j < orcData.response[i].length; j++) {
+    let optionElement = document.createElement("div");
+    optionElement.className = "optionElement";
+    optionElement.id = orcData.response[i][j];
+  optionElement.innerHTML = orcData.response[i][j];
+  //optionElement.setAttribute("draggable", "true");
+  optionsContainer.appendChild(optionElement);
+  
+  }
+
+  temp.push(optionsContainer)
+}
+
+console.log(temp[1]);
+for(let i=0;i<temp.length;i++){
+  document.getElementById(`td_${1}_${i}`).appendChild(temp[i])
+}
+}
+
+    generateTable();
+
+
+    let studentOptions = []
+    function validate(){
+        console.log("validate");
+        let elements = document.querySelector('tbody')
+        let tablerows = elements.childNodes
+        
+        for(let i=1;i<tablerows.length;i++){
+            let tableRowColumns = tablerows[i].childNodes
+            
+            for(let j=0;j<tableRowColumns.length;j++){
+                let colElements = tableRowColumns[j].childNodes
+                let temp =[]
+                for(let k=0;k<colElements.length;k++){
+                    temp.push(colElements[k].id)
+                }
+                studentOptions.push(temp)
+            }
+           
+        }
+
+
+        let originalResponses = orcData.response
+        let flagForValidation = false;
+        let isItBreaked = false;
+        let notFilledAllFields = false
+    
+        for(let i=0;i<originalResponses.length;i++){
+            console.log(studentOptions[i].length  , originalResponses[i].length );
+            if(studentOptions[i].length  < originalResponses[i].length ){
+                    notFilledAllFields = true
+                    break;
+            }
+        }
+
+        if(notFilledAllFields){
+            console.log("please fill all the responses");
+        }else{
+            
+        for(let i=0;i<originalResponses.length;i++){
+           
+           for(let j=0;j<originalResponses[i].length;j++){
+
+               if(studentOptions[i][j] != originalResponses[i][j] ){
+                   isItBreaked = true;
+                   break;
+               }
+           }   
+           if(isItBreaked){
+               break;
+           }
+        }
+
+            if(isItBreaked){
+                console.log("You are wrong!");
+                flagForValidation = false
+             }else{
+                console.log("You are Correct!");
+                flagForValidation = true
+            }
+        }
+       
+    }
+  </script> -->
+</html>

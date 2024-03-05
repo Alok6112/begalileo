@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+    
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ 
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.css" />
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.js"></script>
+
+
+
+     <style>
+     #mathToolbarContainer {
+         width: 300px;
+         height: auto;
+         padding-bottom: 1rem;
+         display: flex;
+         flex-direction: column;
+         background-color: gray;
+         border-radius: 7px;
+         /* position: fixed; */
+         position: absolute;
+         /* top: 0px; */
+         z-index: 1;
+     }
+
+     /* mathToolbarContainer */
+     #mathToolbar {
+         width: 300px;
+         margin: 0 1rem;
+         display: grid;
+         position: relative;
+         gap: 1rem;
+         grid-template-columns: repeat(6, 31px);
+         clear: both;
+     }
+
+     #mathToolbar>div {
+         word-break: break;
+         ;
+         height: 30px;
+         font-size: 10px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+
+         cursor: pointer;
+
+     }
+
+     .testing {
+         color: none;
+     }
+
+     #tooltipTopBar {
+         color: white;
+         font-size: large;
+         font-weight: bold;
+         float: right;
+         margin-right: 10px;
+         margin-bottom: 5px;
+         cursor: pointer;
+        
+     }
+
+     #symbolsWidthHeight {
+         min-width: 30px;
+         min-height: 31px;
+     }
+ </style>
+ </head>
+ <body>
+    <button onclick="validate()">Check</button>
+     <div id="check" style="margin-top:30px">
+        <p>Number race is a popular board game.&nbsp;</p>
+
+<table border="1" cellpadding="1" cellspacing="1" style="width:400px;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; background-color: rgb(153, 204, 0);"><strong>Target number is 25.</strong></td>
+		</tr>
+		<tr>
+			<td>
+			<p><u><strong>Rule of the board game:</strong></u></p>
+
+			<p>*&nbsp;Each person picks a number card.</p>
+
+			<p>*&nbsp;Each player will move through the board in steps shown by their number card.</p>
+
+			<p>*&nbsp;Player <b>gains</b> a point, if they land at the target number or else they <b>lose</b>.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Look at the target numbers in each case and say who <strong>gains</strong> or<strong> loses</strong> a point</p>
+
+<table border="1" cellpadding="0" cellspacing="0" style="width:400px;">
+	<tbody>
+		<tr>
+			<td colspan="3" style="width:106px;height:22px;">
+			<p><strong>Game 1</strong></p>
+
+			<p><strong>Target Number:<span style="background-color:#ff00cc;"> <span style="color:#FFFFFF;">25</span></span></strong></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 106px; text-align: center;"><strong>Player</strong></td>
+			<td style="width: 107px; text-align: center;"><strong>Their number card</strong></td>
+			<td style="width:107px;">&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="width:106px;">
+			<p>Anne</p>
+			</td>
+			<td style="width:107px;">
+			<table align="center" border="1" cellpadding="1" cellspacing="1" style="width:40px;">
+				<tbody>
+					<tr>
+						<td style="border-color: rgb(102, 51, 153); text-align: center; background-color: rgb(255, 0, 153);"><span style="color:#FFFFFF;">3</span></td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+			<td style="width:107px;">
+			<p>&nbsp;<input name="a" type="radio">&nbsp;Gain</p>
+
+			<p>&nbsp;<input checked="checked" name="a" required="required" type="radio"><strong>&nbsp;</strong>Lose</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:106px;">
+			<p>Saya</p>
+			</td>
+			<td style="width:107px;">
+			<table align="center" border="1" cellpadding="1" cellspacing="1" style="width:40px;">
+				<tbody>
+					<tr>
+						<td style="border-color: rgb(102, 51, 153); text-align: center; background-color: rgb(255, 0, 153);"><span style="color:#FFFFFF;">7</span></td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+			<td style="width:107px;">
+			<p>&nbsp;<input name="b" type="radio">&nbsp;Gain</p>
+
+			<p><strong>&nbsp;</strong><input checked="checked" name="b" required="required" type="radio"><strong>&nbsp;</strong>Lose</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:106px;">
+			<p>Ritu</p>
+			</td>
+			<td style="width:107px;">
+			<table align="center" border="1" cellpadding="1" cellspacing="1" style="width:40px;">
+				<tbody>
+					<tr>
+						<td style="border-color: rgb(102, 51, 153); text-align: center; background-color: rgb(255, 0, 153);"><span style="color:#FFFFFF;">5</span></td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+			<td style="width:107px;">
+			<p>&nbsp;<input checked="checked" name="g" required="required" type="radio">&nbsp;Gain</p>
+
+			<p>&nbsp;<input name="g" type="radio">&nbsp;Lose</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+    </div>
+     
+     <div id="mathToolbarContainer">
+     <div className="tooltip-wrapper">
+         <div className="tooltip-top-bar" id="tooltipTopBar">
+             <span className="tooltip-handle">&nbsp;</span>
+             <span onclick="Close()">
+                 X
+             </span>
+         </div>
+         <div id="mathToolbar"> 
+
+             <div className="btn mathsign fractions_cls" title="\frac{ }{ }" onclick="getLatex(event,'\\frac{ }{ }',0)">
+                 <img src="https://begalileo-assets.s3.ap-south-1.amazonaws.com/Madhu-mathzone-pics/5.png" className="fraction"
+                     id="symbolsWidthHeight" />
+             </div>
+
+             <div className="btn mathsign" title="\cdot" onclick="getLatex(event,'\\cdot',1)">
+                 <img src="https://begalileo-assets.s3.ap-south-1.amazonaws.com/Madhu-mathzone-pics/1.png" className="dot1" id="symbolsWidthHeight" />
+             </div>
+
+             <div className="btn mathsign" title="\div" onclick="getLatex(event,'\\div',2)">
+                 <img src="https://begalileo-assets.s3.ap-south-1.amazonaws.com/Madhu-mathzone-pics/4.png" className="divide" id="symbolsWidthHeight" />
+
+             </div>
+             <div className="btn mathsign" title="\times" onclick="getLatex(event,'\\times',3)">
+                 <img src="https://begalileo-assets.s3.ap-south-1.amazonaws.com/Madhu-mathzone-pics/11.png" id="symbolsWidthHeight" />
+
+             </div>
+             <div className="btn mathsign mathquill_cursor_cls" title="\sqrt{}" onclick="getLatex(event,'\\sqrt{}',4)">
+                 <img src="https://begalileo-assets.s3.ap-south-1.amazonaws.com/Madhu-mathzone-pics/10.png" className="sqroot"
+                 id="symbolsWidthHeight" />
+
+             </div>
+             <div className="btn mathsign mathquill_cursor_cls" title="^{ }" onclick="getLatex(event,'^{ }',5)">
+                 <img src="https://begalileo-assets.s3.ap-south-1.amazonaws.com/Madhu-mathzone-pics/12.png" className="exponent"
+                 id="symbolsWidthHeight" />
+
+             </div>
+             <div className="btn mathsign" title="\le" onclick="getLatex(event,'\\le',6)">
+                 <img src="https://begalileo-assets.s3.ap-south-1.amazonaws.com/Madhu-mathzone-pics/6.png" className="lessthanequal"
+                 id="symbolsWidthHeight" />
+
+             </div>
+             <div className="btn mathsign" title="\ge" onclick="getLatex(event,'\\ge',7)">
+                 <img src="https://begalileo-assets.s3.ap-south-1.amazonaws.com/Madhu-mathzone-pics/7.png" className="greaterthanequal"
+                 id="symbolsWidthHeight" />
+
+             </div>
+             <div className="btn mathsign mathquill_cursor_cls" title="\left|\right|" onclick="getLatex(event,'\\left|\\right|',8)">
+                 <img src="https://begalileo-assets.s3.ap-south-1.amazonaws.com/Madhu-mathzone-pics/3.png" className="absolute"
+                 id="symbolsWidthHeight" />
+
+             </div>
+             <div className="btn mathsign" title="\prod" onclick="getLatex(event,'\\prod',9)">
+                 <img src="https://begalileo-assets.s3.ap-south-1.amazonaws.com/Madhu-mathzone-pics/9.png" className="pi" id="symbolsWidthHeight" />
+
+             </div>
+             <div className="btn mathsign mathquill_cursor_cls" title="\nthroot{}{}" onclick="getLatex(event,'\\nthroot{}{}',10)">
+                 <img src="https://begalileo-assets.s3.ap-south-1.amazonaws.com/Madhu-mathzone-pics/8.png" className="nthroot"
+                 id="symbolsWidthHeight" />
+
+             </div>
+             <div className="btn mathsign mathquill_cursor_cls" title="_{ }" onclick="getLatex(event,'_{ }',11)">
+                 <img src="https://begalileo-assets.s3.ap-south-1.amazonaws.com/Madhu-mathzone-pics/2.png" className="xbase" id="symbolsWidthHeight" />
+                 
+             </div>
+         </div>
+     </div>
+ </div>
+
+
+ </body>
+ </html>
+ 
+ 
+ <script type="text/javascript">
+
+ 
+     let typeRadioOut = [], typeCheckboxOut = [], typeInputOut = [], typeSlectOut = [];
+     let typeRadioIn = [], typeCheckboxIn = [], typeInputIn = [], typeSlectIn = [];
+ 
+     var MQ = MathQuill.getInterface(2);
+     var Mfd;
+     let symbolsArray = [
+         "\\\\frac",
+         "\\cdot",
+         "\\div",
+         "\\\\times",
+         "\\sqrt",
+         "^",
+         "\\le",
+         "\\ge",
+         "|",
+         "prod",
+         "\\\\nthroot",
+         "_",
+     ];
+ 
+     let arr = document.getElementsByClassName('mathquill-rendered-math')
+     let res;
+ 
+     //console.log("Check",arr);
+ 
+     for (let i = 0; i < arr.length; i++) {
+         // console.log(arr[i].className.includes('mathquill-editable'));
+         if (arr[i].className.includes('mathquill-editable')) {
+             arr[i].innerHTML = insertDyanamicMathMl(arr[i].innerHTML).outerHTML
+             arr[i].addEventListener('click', setClickedDiv)
+         } else {
+             arr[i].innerHTML = insertStaticMathMl(arr[i].innerHTML).outerHTML
+         }
+ 
+     }
+ 
+ 
+    //document.getElementById('mathToolbarContainer').style.visibility = "hidden";
+    document.getElementById('mathToolbarContainer').style.display = "none";
+    // document.getElementsByClassName('simple-keyboard')[0].style.visibility = "hidden"
+ 
+    let elementClicked;
+
+
+
+ 
+     function getLatex(e, latex, i) {
+         e.preventDefault()
+         console.log("yes", latex);
+         // mathField.cmd(symbolsArray[i])
+         // mathField.focus()
+         // Mfd.latex(latex)
+         Mfd = MQ.MathField(elementClicked)
+         Mfd.cmd(symbolsArray[i])
+         Mfd.moveToRightEnd()
+         Mfd.focus()
+ 
+     }
+ 
+ 
+     function setClickedDiv(event) {
+         event.preventDefault();
+         var e = event.target;
+         while (!e.classList.contains('mathquill-editable')) {
+             e = e.parentElement;
+         }
+         elementClicked = e;
+         let toolTipElement = document.getElementById('mathToolbarContainer');
+ 
+ 
+        //toolTipElement.style.visibility = "visible";
+        toolTipElement.style.display = "flex";
+       //  document.getElementsByClassName('simple-keyboard')[0].style.visibility = "visible"
+ 
+ 
+         var rect = elementClicked.getBoundingClientRect();
+         var heightOfToolTip = toolTipElement.getBoundingClientRect().height;
+         var widthOfToolTip = toolTipElement.getBoundingClientRect().width;
+ 
+         toolTipElement.style.top = rect.top - heightOfToolTip - 5 + "px";
+         toolTipElement.style.left = rect.left - (widthOfToolTip / 8) + 'px';
+ 
+         setHeight();
+ 
+     }
+ 
+ 
+     function insertStaticMathMl(data) {
+         var problemSpan = document.createElement('span')
+         // problemSpan.innerHTML = data
+         problemSpan.innerHTML = data
+         problemSpan.className = "mq-replacable"
+         problemSpan.id = Math.floor(Math.random() * 1000) + 1
+         MQ.StaticMath(problemSpan)
+         return problemSpan;
+     }
+ 
+ 
+     function insertDyanamicMathMl(data) {
+ 
+         var problemSpan = document.createElement('span')
+         problemSpan.id = Math.floor(Math.random() * 1000) + 1
+         problemSpan.setAttribute('contenteditable', "true");
+         problemSpan.style.minWidth = '20px';
+         var mathField = MQ.MathField(problemSpan, {
+             spaceBehavesLikeTab: true
+         })
+         return problemSpan;
+     }
+ 
+ 
+     function Close() {
+         console.log("Close button is clicked");
+         //document.getElementById('mathToolbarContainer').style.visibility = "hidden";
+         document.getElementById('mathToolbarContainer').style.display = "none";
+        // document.getElementsByClassName('simple-keyboard')[0].style.visibility = "hidden"
+        setHeight()
+     }
+ 
+     
+     
+ 
+ 
+     function finalResponses() {
+         console.log("Final responses");
+         let elements = document.getElementsByTagName("input")
+         let selectElements = document.getElementsByTagName("select")
+
+         typeRadioOut = [],typeInputOut=[],typeCheckboxOut=[],typeSlectOut=[]
+
+         let i = 0;
+         while (i < elements.length) {
+             console.log(elements[i]);
+             if (elements[i].type == 'radio') {
+                elements[i].disabled=true
+                 typeRadioOut.push(elements[i].checked)
+                 if(elements[i].checked == true){
+                    elements[i].checked = "checked"
+                }
+             } else if (elements[i].type == 'text') {
+                elements[i].disabled=true
+                 typeInputOut.push(elements[i].value.trim())
+
+             } else if (elements[i].type == 'checkbox') {
+                elements[i].disabled=true
+                 typeCheckboxOut.push(elements[i].checked)
+                 if(elements[i].checked == true){
+                    elements[i].checked = "checked"
+                }
+             }
+ 
+             i++;
+         }
+ 
+ 
+         //to get selected input fileds
+         i = 0;
+         while (i < selectElements.length) {
+ 
+             let j = 0;
+ 
+             while (j < selectElements[i].options.length) {
+                 if (selectElements[i].options[j].selected) {
+                    selectElements[i].disabled = true
+                     typeSlectOut.push(selectElements[i].options[j].innerHTML)
+                     selectElements[i].options[j].selected = "selected"
+                 }
+                 j++;
+             }
+ 
+             i++;
+         }
+ 
+ 
+         let isCorrect = validate();
+         //alert(isCorrect)
+        // alert(document.getElementById("check").innerHTML)
+         console.log(document.getElementById("check").innerHTML);
+         res = document.getElementById("check").innerHTML
+        return isCorrect
+         
+          
+     }
+ 
+     function validate() {
+ 
+         let flagForValidation = true;
+         
+         for (let i = 0; i < arr.length; i++) {
+ 
+             if (arr[i].className.includes('mathquill-editable')) {
+                 Mfd = MQ.MathField(arr[i])
+                 let defaultStr = arr[i].title
+                 let studentStr =  Mfd.latex().slice()
+ 
+                  let str1 =  defaultStr.replaceAll(/\\\\/g, '')
+                  let str2 = studentStr.replaceAll(/\\\\/g, '')
+                  str1 = str1.split(" ").join("").trim()
+                  str2 = str2.split(" ").join("").trim()
+
+                 if(str1 !=  str2){
+                     flagForValidation = false;
+                     return flagForValidation;
+                }
+                 
+             }
+ 
+         }
+ 
+ 
+         let i = 0;
+         while (i < typeRadioOut.length) {
+             if (typeRadioOut[i] !== typeRadioIn[i]) {
+                 flagForValidation = false
+                 return flagForValidation;
+             }
+ 
+             i++;
+         }
+ 
+         i = 0;
+         while (i < typeCheckboxOut.length) {
+             if (typeCheckboxOut[i] !== typeCheckboxIn[i]) {
+                 flagForValidation = false
+                 return flagForValidation;
+             }
+             i++;
+         }
+ 
+         i = 0;
+         while (i < typeInputOut.length) {
+             if (typeInputOut[i] !== typeInputIn[i]) {
+                 flagForValidation = false
+                 return flagForValidation;
+             }
+             i++;
+         }
+ 
+         i = 0;
+         while (i < typeSlectOut.length) {
+             if (typeSlectOut[i] !== typeSlectIn[i]) {
+                 flagForValidation = false
+                 return flagForValidation;
+             }
+             i++;
+         }
+ 
+         console.log("flagForValidation",flagForValidation);
+ 
+         return flagForValidation;
+ 
+     }
+ 
+ 
+ 
+     let elements = document.getElementsByTagName("input")
+     let selectElements = document.getElementsByTagName("select")
+ 
+         //to reset selected input fileds
+         let i = 0;
+         while (i < selectElements.length) {
+ 
+             let j = 0;
+ 
+             while (j < selectElements[i].options.length) {
+                 if (selectElements[i].options[j].selected) {
+                     typeSlectIn.push(selectElements[i].options[j].innerHTML)
+                    // selectElements[i].options[j].removeAttribute("selected")
+                    selectElements[i].options[j].selected = ""
+                 }
+                 j++;
+             }
+ 
+             i++;
+         }
+ 
+         //to reset the radio, checkbox and input fileds 
+         i = 0;
+         while (i < elements.length) {
+            console.log();
+ 
+             if (elements[i].type == 'radio') {
+ 
+                 typeRadioIn.push(elements[i].checked)
+                 if (elements[i].checked) {
+                     //elements[i].removeAttribute("checked")
+                     elements[i].checked=""
+                 }
+ 
+             } else if (elements[i].type == 'text') {
+ 
+                 typeInputIn.push(elements[i].value)
+                 if (elements[i].value) {
+                     elements[i].value = ""
+                 }
+ 
+             } else if (elements[i].type == 'checkbox') {
+ 
+                 typeCheckboxIn.push(elements[i].checked)
+                 if (elements[i].checked) {
+                    // elements[i].removeAttribute("checked")
+                    elements[i].checked=""
+                 }
+             }
+ 
+             i++;
+         }
+        // setHeight()
+
+        // function setHeight(){
+        //     var body =  document.body,
+        //     html = document.documentElement;
+    
+        //     var height = Math.max(
+        //         body.scrollHeight, html.scrollHeight,
+        //         body.offsetHeight, html.offsetHeight,
+        //         body.clientHeight, html.clientHeight
+        //     );
+        //     const data = JSON.stringify({height, type:'dimensions'})
+        //     window.ReactNativeWebView.postMessage(data);
+        // }
+
+        // window.addEventListener("message", message => {
+    
+        //     if(message.data == 'validate'){
+        //         let isCorrect = finalResponses();
+        //        alert(isCorrect)
+        //        // res = document.getElementById("check").innerHTML;
+        //     //alert(res)
+        //         const obj = {
+        //         isCorrect:isCorrect,
+        //         student_answer_response:JSON.stringify(res)
+        //         }
+    
+        //         const data = JSON.stringify({obj, type:'check'})
+        //         window.ReactNativeWebView.postMessage(data);
+        //     }else{
+        //       //  alert("No")
+        //     }
+            
+            
+            
+        // });
+    
+ </script>
